@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SF Foodie Weekend — Sep 4–7, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#5b3a4a;        /* soft plum, main text */
+    --ink-soft:#f6e6e2;   /* blush card background */
+    --paper:#fffaf5;      /* warm ivory, confirmed cards */
+    --bg:#fdf2ec;         /* soft blush page background */
+    --bg2:#fbe8e6;        /* secondary blush for gradient */
+    --fri:#e08a94;        /* dusty rose */
+    --sat:#9fb4d4;        /* dusty periwinkle */
+    --sun:#9cbb96;        /* sage */
+    --mon:#d0b8a8;        /* warm taupe */
+    --line-w: 3px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 80px 0;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 0;}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
+  .display{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;}
+
+  /* ---------- Ticket header ---------- */
+  .ticket{
+    position:relative;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:14px;
+    padding:28px 28px 22px;
+    margin-bottom:36px;
+    box-shadow:0 14px 34px rgba(224,138,148,0.22);
+  }
+  .ticket::before,.ticket::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:28px;height:28px;
+    background:var(--bg);
+    border-radius:50%;
+    transform:translateY(-50%);
+  }
+  .ticket::before{left:-14px;}
+  .ticket::after{right:-14px;}
+  .ticket-perf{
+    position:absolute;
+    left:0;right:0;top:132px;
+    height:0;
+    border-top:2px dashed rgba(91,58,74,0.22);
+  }
+  .ticket-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .ticket-eyebrow{font-size:12px;letter-spacing:0.18em;opacity:0.6;margin:0 0 6px;}
+  .ticket-title{font-size:44px;line-height:0.92;margin:0;font-weight:700;}
+  .ticket-title span{color:var(--fri);}
+  .ticket-route{
+    text-align:right;
+  }
+  .ticket-route .code{font-size:30px;font-weight:600;}
+  .ticket-route .arrow{opacity:0.5;padding:0 6px;}
+  .ticket-meta{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    row-gap:14px;
+    column-gap:16px;
+    padding-top:20px;
+    font-size:12.5px;
+  }
+  .ticket-meta div{display:flex;flex-direction:column;gap:2px;}
+  .ticket-meta b{font-size:13.5px;letter-spacing:0.02em;font-weight:600;}
+  .ticket-meta label{opacity:0.55;letter-spacing:0.12em;font-size:10.5px;}
+
+  /* ---------- Legend ---------- */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 22px;
+    margin:0 0 40px;
+    padding:14px 18px;
+    background:var(--ink-soft);
+    border-radius:14px;
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink);}
+  .legend-dot{width:11px;height:11px;border-radius:50%;flex:none;}
+
+  /* ---------- Map ---------- */
+  .map-frame{
+    width:100%;height:170px;border:0;border-radius:14px;display:block;
+    filter:saturate(0.9) contrast(0.98) brightness(1.03);
+  }
+  .map-cap{
+    font-size:11px;opacity:0.55;margin:6px 2px 0;letter-spacing:0.04em;
+  }
+
+  /* ---------- Day sections ---------- */
+  .day{margin-bottom:56px;}
+  .day-head{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:18px;
+  }
+  .day-badge{
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:700;font-size:22px;color:var(--ink);
+    flex:none;
+    box-shadow:0 6px 14px rgba(91,58,74,0.18);
+  }
+  .day-titles{line-height:1.05;}
+  .day-titles .dname{font-size:30px;font-weight:600;letter-spacing:0.01em;color:var(--ink);}
+  .day-titles .ddate{font-size:12px;opacity:0.55;letter-spacing:0.1em;}
+
+  .timeline{
+    position:relative;
+    padding-left:38px;
+    margin-top:10px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:14px;top:6px;bottom:6px;
+    width:var(--line-w);
+    background:currentColor;
+    opacity:0.4;
+    border-radius:3px;
+  }
+  .stop{
+    position:relative;
+    margin-bottom:22px;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+  .stop.in{opacity:1;transform:translateY(0);}
+  .stop::before{
+    content:"";
+    position:absolute;
+    left:-38px; top:6px;
+    width:15px;height:15px;
+    border-radius:50%;
+    background:var(--paper);
+    border:3px solid currentColor;
+  }
+  .stop-time{
+    font-size:12px;
+    color:var(--ink);
+    opacity:0.7;
+    margin-bottom:4px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .stop-card{
+    background:var(--ink-soft);
+    color:var(--ink);
+    border-radius:14px;
+    padding:14px 16px 15px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .stop-card.confirmed{
+    background:var(--paper);
+    color:var(--ink);
+    border:1.5px dashed currentColor;
+  }
+  .stop-icon{
+    flex:none;
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(91,58,74,0.06);
+  }
+  .confirmed .stop-icon{background:rgba(91,58,74,0.07);}
+  .stop-icon svg{width:18px;height:18px;}
+  .stop-body{flex:1;}
+  .stop-name{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:600;text-transform:none;
+    font-size:19px;
+    margin:0 0 3px;
+    color:var(--ink);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.08em;
+    padding:2px 7px;
+    border-radius:20px;
+    text-transform:uppercase;
+  }
+  .tag.confirmed{background:var(--ink);color:var(--paper);}
+  .tag.suggested{background:rgba(91,58,74,0.08);color:var(--ink);}
+  .confirmed .tag.suggested{background:rgba(91,58,74,0.08);color:var(--ink);}
+  .stop-desc{
+    font-size:14.5px;
+    line-height:1.45;
+    opacity:0.75;
+    margin:0;
+    color:var(--ink);
+  }
+  .confirmed .stop-desc{opacity:0.7;}
+
+  footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:12px;
+    opacity:0.45;
+    letter-spacing:0.08em;
+    color:var(--ink);
+  }
+
+  @media (max-width:480px){
+    .ticket-title{font-size:34px;}
+    .ticket-route .code{font-size:22px;}
+    .day-titles .dname{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TICKET HEADER -->
+  <div class="ticket">
+    <div class="ticket-top">
+      <div>
+        <p class="ticket-eyebrow mono">BOARDING · FOODIE WEEKEND</p>
+        <h1 class="ticket-title display">San<br>Francisco<span>.</span></h1>
+      </div>
+      <div class="ticket-route mono">
+        <div class="code">OMA<span class="arrow">✈</span>SFO</div>
+        <div style="font-size:12px;opacity:0.6;margin-top:4px;">ROUND TRIP</div>
+      </div>
+    </div>
+    <div class="ticket-perf"></div>
+    <div class="ticket-meta mono" style="padding-top:26px;">
+      <div><label>DEPART</label><b>FRI SEP 4</b></div>
+      <div><label>RETURN</label><b>MON SEP 7</b></div>
+      <div><label>PARTY</label><b>2 GUESTS</b></div>
+      <div><label>BASE CAMP</label><b>HOTEL ZETTA</b></div>
+      <div><label>CONFIRM #</label><b>CI60ZZ6N</b></div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend mono">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--fri)"></span> FRI — ARRIVAL &amp; JACKSON SQ</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--sat)"></span> SAT — FERRY BLDG &amp; HAYES VALLEY</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--sun)"></span> SUN — PARK, CHINATOWN &amp; MISSION</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--mon)"></span> MON — DEPARTURE</div>
+  </div>
+
+  <!-- ================= FRIDAY ================= -->
+  <div class="day" style="color:var(--fri)">
+    <div class="day-head">
+      <div class="day-badge" style="background:var(--fri)">F</div>
+      <div class="day-titles">
+        <div class="dname display">Touchdown &amp; Kokkari</div>
+        <div class="ddate mono">FRIDAY · SEPTEMBER 4</div>
+      </div>
+    </div>
+
+    <iframe class="map-frame" loading="lazy" src="https://www.google.com/maps?q=200+Jackson+St+San+Francisco+CA&output=embed"></iframe>
+    <p class="map-cap mono">JACKSON SQUARE — TONIGHT'S DINNER</p>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-time mono">3:30 PM — 5:14 PM · UA 1355</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-8 20-2-8-8-2z"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Depart Omaha → SFO</p>
+            <p class="stop-desc">Nonstop on United, Boeing 737 MAX 8. Land in San Francisco just after 5pm.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">5:30 PM</div>
+        <div class="stop-card confirmed">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Check in — Hotel Zetta <span class="tag confirmed">Confirmed · CI60ZZ6N</span></p>
+            <p class="stop-desc">Sep 4–7, 2 adults. Drop bags, SoMa/Union Square base camp for the weekend.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">6:15 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Union Square stroll</p>
+            <p class="stop-desc">Loosen up after the flight — window shop, get oriented before dinner.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">8:00 PM</div>
+        <div class="stop-card confirmed">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v7a4 4 0 008 0V2"/><path d="M12 13v9"/><path d="M8 22h8"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Kokkari Estiatorio <span class="tag confirmed">Confirmed · 2 guests</span></p>
+            <p class="stop-desc">Warm, lively Jackson Square institution — rustic Mediterranean elegance for night one.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SATURDAY ================= -->
+  <div class="day" style="color:var(--sat)">
+    <div class="day-head">
+      <div class="day-badge" style="background:var(--sat)">S</div>
+      <div class="day-titles">
+        <div class="dname display">Ferry Bldg &amp; Omakase</div>
+        <div class="ddate mono">SATURDAY · SEPTEMBER 5</div>
+      </div>
+    </div>
+
+    <iframe class="map-frame" loading="lazy" src="https://www.google.com/maps?q=620+Gough+St+San+Francisco+CA&output=embed"></iframe>
+    <p class="map-cap mono">HAYES VALLEY — TONIGHT'S DINNER</p>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-time mono">9:00 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Ferry Building Marketplace</p>
+            <p class="stop-desc">Coffee, pastries, and the Saturday farmers market stalls out front.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">11:00 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Chinatown walk</p>
+            <p class="stop-desc">Wander the gates, temples, and alleyways of the oldest Chinatown in North America.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">1:00 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 9V6a2 2 0 012-2h6a2 2 0 012 2v3"/><circle cx="7.5" cy="18" r="1.4"/><circle cx="16.5" cy="18" r="1.4"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Powell–Hyde cable car</p>
+            <p class="stop-desc">Classic SF crossing toward Russian Hill — hang off the running board if you dare.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">1:45 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3-2 3-4 6-4s3 4 6 4 3-4 6-4"/><path d="M3 13c3-2 3-4 6-4s3 4 6 4 3-4 6-4"/><path d="M3 5c3-2 3-4 6-4"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Lombard Street</p>
+            <p class="stop-desc">The famously crooked block — walk it, then find the best photo angle.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">4:00 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v7a4 4 0 008 0V2"/><path d="M12 13v9"/><path d="M8 22h8"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Rest at the hotel</p>
+            <p class="stop-desc">Breathing room before tonight — this is the one splurge dinner of the trip.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">7:45 PM</div>
+        <div class="stop-card confirmed">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="9" ry="5"/><path d="M12 7v10"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Robin <span class="tag confirmed">Confirmed · Sushi bar</span></p>
+            <p class="stop-desc">Personalized, contemporary omakase in Hayes Valley — let the chef take it from here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SUNDAY ================= -->
+  <div class="day" style="color:var(--sun)">
+    <div class="day-head">
+      <div class="day-badge" style="background:var(--sun)">S</div>
+      <div class="day-titles">
+        <div class="dname display">Park, Dim Sum &amp; Oysters</div>
+        <div class="ddate mono">SUNDAY · SEPTEMBER 6</div>
+      </div>
+    </div>
+
+    <iframe class="map-frame" loading="lazy" src="https://www.google.com/maps?q=2282+Mission+St+San+Francisco+CA&output=embed"></iframe>
+    <p class="map-cap mono">MISSION DISTRICT — TONIGHT'S DINNER</p>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-time mono">9:00 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0116 0c0 4-3 6-3 9H7c0-3-3-5-3-9z"/><path d="M9 21h6"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Breadbelly</p>
+            <p class="stop-desc">Inner Richmond bakery, breakfast — arrive early for the best pastry selection.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">10:30 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M12 6c-3 0-5 2-5 5s2 5 5 5 5-2 5-5-2-5-5-5z"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Golden Gate Park</p>
+            <p class="stop-desc">Easy scenic walk — detour to the Japanese Tea Garden or Conservatory of Flowers if time allows.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">12:30 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">City View Restaurant <span class="tag suggested">Dim sum · Chinatown</span></p>
+            <p class="stop-desc">Bright, cart-style dim sum with fast, attentive service — a Chinatown reliable.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">2:30 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l4-3 4 3v11"/><path d="M13 21V7l3-2 3 2v14"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Painted Ladies / Alamo Square</p>
+            <p class="stop-desc">Postcard Victorians with the downtown skyline behind them — quick, easy stop.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">3:30 PM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="0.5"/><circle cx="17.5" cy="10.5" r="0.5"/><circle cx="8.5" cy="7.5" r="0.5"/><circle cx="6.5" cy="12.5" r="0.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1 0 2-1 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.4 0-1 1-2 2-2h2.4c2.6 0 4.6-2.1 4.6-4.6C22 6 17.5 2 12 2z"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Mission mural walk</p>
+            <p class="stop-desc">Balmy Alley and Clarion Alley — a wander before dinner just a few blocks away.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">6:30 PM</div>
+        <div class="stop-card confirmed">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 3 5 6 5 9a5 5 0 01-10 0c0-3 2-6 5-9z"/><path d="M12 16v6"/><path d="M9 22h6"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Mission Street Oyster Bar <span class="tag confirmed">Confirmed · 2 guests</span></p>
+            <p class="stop-desc">Fresh oysters, cioppino, and a full raw bar to close out the weekend's last dinner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MONDAY ================= -->
+  <div class="day" style="color:var(--mon)">
+    <div class="day-head">
+      <div class="day-badge" style="background:var(--mon)">M</div>
+      <div class="day-titles">
+        <div class="dname display">Homeward</div>
+        <div class="ddate mono">MONDAY · SEPTEMBER 7</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-time mono">6:30 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Check out — Hotel Zetta</p>
+            <p class="stop-desc">Bags out, leave a little buffer before brunch and the ride to SFO.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">7:00 AM</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0116 0c0 4-3 6-3 9H7c0-3-3-5-3-9z"/><path d="M9 21h6"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Quick brunch near the hotel</p>
+            <p class="stop-desc">Easy, unhurried last bite before heading to the airport.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time mono">8:53 AM — 2:20 PM · UA 739</div>
+        <div class="stop-card">
+          <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-8-8 20-2-8-8-2z"/></svg></div>
+          <div class="stop-body">
+            <p class="stop-name">Depart SFO → Omaha</p>
+            <p class="stop-desc">Nonstop home, wheels down in Omaha early afternoon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mono">— BON VOYAGE —</footer>
+</div>
+
+<script>
+  const stops = document.querySelectorAll('.stop');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){
+    stops.forEach(s=>s.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15});
+    stops.forEach(s=>io.observe(s));
+  }
+</script>
+</body>
+</html>
