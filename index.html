@@ -209,6 +209,17 @@
     color:var(--ink);
   }
   .confirmed .stop-desc{opacity:0.7;}
+  .map-link{
+    display:inline-flex;align-items:center;gap:4px;
+    margin-top:8px;
+    font-size:11px;
+    color:var(--ink);
+    opacity:0.6;
+    text-decoration:none;
+    border-bottom:1px dashed currentColor;
+    padding-bottom:1px;
+  }
+  .map-link:hover{opacity:1;}
 
   footer{
     text-align:center;
@@ -246,14 +257,13 @@
       <div><label>DEPART</label><b>FRI SEP 4</b></div>
       <div><label>RETURN</label><b>MON SEP 7</b></div>
       <div><label>PARTY</label><b>2 GUESTS</b></div>
-      <div><label>BASE CAMP</label><b>HOTEL ZETTA</b></div>
-      <div><label>CONFIRM #</label><b>CI60ZZ6N</b></div>
+      <div><label>BASE CAMP</label><b>TIMBRI HOTEL</b></div>
     </div>
   </div>
 
   <!-- LEGEND -->
   <div class="legend mono">
-    <div class="legend-item"><span class="legend-dot" style="background:var(--fri)"></span> FRI — ARRIVAL &amp; JACKSON SQ</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--fri)"></span> FRI — ARRIVAL &amp; MISSION</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--sat)"></span> SAT — FERRY BLDG &amp; HAYES VALLEY</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--sun)"></span> SUN — PARK, CHINATOWN &amp; MISSION</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--mon)"></span> MON — DEPARTURE</div>
@@ -280,6 +290,7 @@
           <div class="stop-body">
             <p class="stop-name">Depart Omaha → SFO</p>
             <p class="stop-desc">Nonstop on United, Boeing 737 MAX 8. Land in San Francisco just after 5pm.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=San+Francisco+International+Airport" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -288,8 +299,9 @@
         <div class="stop-card confirmed">
           <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
           <div class="stop-body">
-            <p class="stop-name">Check in — Hotel Zetta <span class="tag confirmed">Confirmed · CI60ZZ6N</span></p>
-            <p class="stop-desc">Sep 4–7, 2 adults. Drop bags, SoMa/Union Square base camp for the weekend.</p>
+            <p class="stop-name">Check in — Timbri Hotel <span class="tag confirmed">Confirmed</span></p>
+            <p class="stop-desc">Sep 4–7, 2 adults. Curio Collection by Hilton, near Union Square/Mid-Market — base camp for the weekend.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Timbri+Hotel+San+Francisco+33+Turk+St" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -300,6 +312,7 @@
           <div class="stop-body">
             <p class="stop-name">Union Square stroll</p>
             <p class="stop-desc">Loosen up after the flight — window shop, get oriented before dinner.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Union+Square+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -310,6 +323,7 @@
           <div class="stop-body">
             <p class="stop-name">Itria <span class="tag confirmed">Confirmed · 2 guests</span></p>
             <p class="stop-desc">Modern Italian in the Mission — handmade pastas and a rotating crudo menu from Chef Daniel Evers, a Michelin pick for night one.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Itria+Restaurant+3266+24th+St+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -337,6 +351,7 @@
           <div class="stop-body">
             <p class="stop-name">Ferry Building Marketplace</p>
             <p class="stop-desc">Coffee, pastries, and the Saturday farmers market stalls out front.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Ferry+Building+Marketplace+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -347,6 +362,7 @@
           <div class="stop-body">
             <p class="stop-name">Chinatown walk</p>
             <p class="stop-desc">Wander the gates, temples, and alleyways of the oldest Chinatown in North America.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Chinatown+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -357,6 +373,7 @@
           <div class="stop-body">
             <p class="stop-name">Ling Nam Restaurant &amp; Bakeshop <span class="tag suggested">Dessert detour</span></p>
             <p class="stop-desc">Worth the short drive south to Daly City for warm Señorita Bread and halo-halo — a beloved Filipino-Chinese bakery since 1990.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Ling+Nam+Restaurant+and+Bakeshop+Daly+City+CA" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -367,6 +384,7 @@
           <div class="stop-body">
             <p class="stop-name">Powell–Hyde cable car</p>
             <p class="stop-desc">Classic SF crossing toward Russian Hill — hang off the running board if you dare.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Powell+and+Hyde+Cable+Car+Turnaround+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -377,6 +395,7 @@
           <div class="stop-body">
             <p class="stop-name">Lombard Street</p>
             <p class="stop-desc">The famously crooked block — walk it, then find the best photo angle.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Lombard+Street+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -387,6 +406,7 @@
           <div class="stop-body">
             <p class="stop-name">Rest at the hotel</p>
             <p class="stop-desc">Breathing room before tonight — this is the one splurge dinner of the trip.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Timbri+Hotel+San+Francisco+33+Turk+St" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -397,6 +417,7 @@
           <div class="stop-body">
             <p class="stop-name">Robin <span class="tag confirmed">Confirmed · Sushi bar</span></p>
             <p class="stop-desc">Personalized, contemporary omakase in Hayes Valley — let the chef take it from here.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Robin+Restaurant+620+Gough+St+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -424,6 +445,7 @@
           <div class="stop-body">
             <p class="stop-name">Breadbelly</p>
             <p class="stop-desc">Inner Richmond bakery, breakfast — arrive early for the best pastry selection.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Breadbelly+San+Francisco+Inner+Richmond" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -434,6 +456,7 @@
           <div class="stop-body">
             <p class="stop-name">Golden Gate Park</p>
             <p class="stop-desc">Easy scenic walk — detour to the Japanese Tea Garden or Conservatory of Flowers if time allows.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+Park+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -444,6 +467,7 @@
           <div class="stop-body">
             <p class="stop-name">City View Restaurant <span class="tag suggested">Dim sum · Chinatown</span></p>
             <p class="stop-desc">Bright, cart-style dim sum with fast, attentive service — a Chinatown reliable.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=City+View+Restaurant+San+Francisco+Chinatown" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -454,6 +478,7 @@
           <div class="stop-body">
             <p class="stop-name">Painted Ladies / Alamo Square</p>
             <p class="stop-desc">Postcard Victorians with the downtown skyline behind them — quick, easy stop.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Alamo+Square+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -464,6 +489,7 @@
           <div class="stop-body">
             <p class="stop-name">Mission mural walk</p>
             <p class="stop-desc">Balmy Alley and Clarion Alley — a wander before dinner just a few blocks away.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Balmy+Alley+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -474,6 +500,7 @@
           <div class="stop-body">
             <p class="stop-name">Mission Street Oyster Bar <span class="tag confirmed">Confirmed · 2 guests</span></p>
             <p class="stop-desc">Fresh oysters, cioppino, and a full raw bar to close out the weekend's last dinner.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Mission+Street+Oyster+Bar+2282+Mission+St+San+Francisco" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -496,8 +523,9 @@
         <div class="stop-card">
           <div class="stop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
           <div class="stop-body">
-            <p class="stop-name">Check out — Hotel Zetta</p>
+            <p class="stop-name">Check out — Timbri Hotel</p>
             <p class="stop-desc">Bags out, leave a little buffer before brunch and the ride to SFO.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Timbri+Hotel+San+Francisco+33+Turk+St" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -508,6 +536,7 @@
           <div class="stop-body">
             <p class="stop-name">Quick brunch near the hotel</p>
             <p class="stop-desc">Easy, unhurried last bite before heading to the airport.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=Union+Square+San+Francisco+brunch" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
@@ -518,6 +547,7 @@
           <div class="stop-body">
             <p class="stop-name">Depart SFO → Omaha</p>
             <p class="stop-desc">Nonstop home, wheels down in Omaha early afternoon.</p>
+            <a class="map-link mono" href="https://www.google.com/maps/search/?api=1&query=San+Francisco+International+Airport" target="_blank" rel="noopener">View on map →</a>
           </div>
         </div>
       </div>
